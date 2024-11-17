@@ -5,7 +5,17 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      keyframes: {
+        bulge: {
+          '0%, 100%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(1.2)' },
+        },
+      },
+      animation: {
+        bulge: 'bulge 0.3s ease-in-out',
+      },
+    },
   },
   plugins: [],
 }
