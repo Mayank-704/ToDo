@@ -4,6 +4,7 @@ import "./App.css";
 import { ToDoProvider } from "./Context/index";
 import ToDoForm from "./Components/ToDoForm/ToDoForm";
 import ToDoItem from "./Components/ToDoItem/ToDoItem";
+import Weather from "./Components/Weather";
 
 function App() {
   const [todos, settodos] = useState([]);
@@ -52,10 +53,11 @@ function App() {
       {weather && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg text-center w-96">
-            <h2 className="text-xl font-bold text-gray-800 mb-4">Today's Weather</h2>
-            <p className="text-gray-600 mb-4">
+            <h2 className="text-xl font-bold text-gray-800 mb-4">  Weather</h2>
+            {/* <p className="text-gray-600 mb-4">
               It's a sunny day with a high of 25°C and a low of 18°C. Perfect for outdoor activities!
-            </p>
+            </p> */}
+            <Weather/>
             <button
               onClick={() => setWeather(false)}
               className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition"
@@ -78,7 +80,7 @@ function App() {
               onClick={() => setWeather((prev) => !prev)}
               className="text-lg text-[#FF8A65] cursor-pointer flex justify-end gap-2 mt-2 font-semibold text-right mb-6 transition-transform duration-300 hover:scale-125"
             >
-              See Today's Weather
+              See  Weather
               <img src={weatherImage} alt="weather" className="" />
             </h1>
             <div className="mb-4">
