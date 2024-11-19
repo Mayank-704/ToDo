@@ -8,7 +8,7 @@ function ToDoForm() {
     if (!todo) return;
     addToDo({ todo, completed: false }); //todo:todo => todo (if key and value are same)
     setTodo("");
-};
+  };
   return (
     <>
       <form onSubmit={add} className="flex">

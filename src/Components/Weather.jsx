@@ -1,21 +1,18 @@
-import  { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import "./Weather.css";
-import { useEffect } from "react"
+import { useEffect } from "react";
 
-
-import Search_icon from "./Assets/search.png";
+import Search_icon from "./Assets/searchIcon.svg";
 import Clear_icon from "./Assets/clear.png";
 import Cloud_icon from "./Assets/cloud.png";
 import Drizzle_icon from "./Assets/drizzle.png";
 import Humidity_icon from "./Assets/humidity.png";
 import Snow_icon from "./Assets/snow.png";
 import Wind_icon from "./Assets/wind.png";
-import Rain_icon from "./Assets/rain.png"
+import Rain_icon from "./Assets/rain.png";
 
 function Weather() {
-
-
-  const inputRef=useRef();
+  const inputRef = useRef();
 
   const [weatherDate, setweatherData] = useState(false);
 
@@ -29,21 +26,19 @@ function Weather() {
     "04d": Drizzle_icon,
     "04n": Drizzle_icon,
     "09n": Rain_icon,
-    "13d":Snow_icon,
-    "13n":Snow_icon,
-
-
+    "13d": Snow_icon,
+    "13n": Snow_icon,
   };
 
-
   const search = async (city) => {
-    if(city===""){
+    if (city === "") {
       alert("Enter City Name");
     }
     try {
       // const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.REACT_APP_APP_ID}`;
-      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${import.meta.env.VITE_APP_ID}`;
-
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${
+        import.meta.env.VITE_APP_ID
+      }`;
 
       const response = await fetch(url);
       if (!response.ok) {
@@ -51,14 +46,14 @@ function Weather() {
       }
       const data = await response.json();
       console.log(data);
-      const icon=allIcons[data.weather[0].icon] ||Clear_icon;
+      const icon = allIcons[data.weather[0].icon] || Clear_icon;
       setweatherData({
         humidity: data.main.humidity,
         windSpeed: data.wind.speed,
         temperature: Math.floor(data.main.temp),
         location: data.name,
-        icon:icon
-      })
+        icon: icon,
+      });
     } catch (error) {
       console.error("Error fetching weather data:", error);
     }
@@ -66,17 +61,19 @@ function Weather() {
 
   useEffect(() => {
     search("Lucknow");
-  }, [])
-
-
+  }, []);
 
   return (
     <div className="weather">
       <div className="search-bar">
         <input ref={inputRef} type="text" placeholder="Search" />
-        <img src={Search_icon} alt="no" onClick={()=>{
-          search(inputRef.current.value)
-        }} />
+        <img
+          src={Search_icon}
+          alt="no"
+          onClick={() => {
+            search(inputRef.current.value);
+          }}
+        />
       </div>
 
       <img src={weatherDate.icon} alt="" className="weather-icon" />
