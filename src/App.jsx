@@ -51,22 +51,23 @@ function App() {
   return (
     <>
       {weather && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg text-center w-96">
-            <h2 className="text-xl font-bold text-gray-800 mb-4">  Weather</h2>
-            {/* <p className="text-gray-600 mb-4">
-              It's a sunny day with a high of 25°C and a low of 18°C. Perfect for outdoor activities!
-            </p> */}
-            <Weather/>
-            <button
-              onClick={() => setWeather(false)}
-              className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )}
+  <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+    <div className="bg-white p-6 rounded-lg shadow-lg text-center w-96 relative">
+      <button
+        onClick={() => setWeather(false)}
+        className="absolute top-2 right-2 bg-gray-200 text-gray-600 rounded-full p-2 hover:bg-gray-300 transition"
+        aria-label="Close"
+      >
+        ✕
+      </button>
+      <h2 className="text-xl font-bold text-gray-800 mb-4">Today's Weather</h2>
+      <p className="text-gray-600 mb-4">
+        {/* It's a sunny day with a high of 25°C and a low of 18°C. Perfect for outdoor activities! */}
+        <Weather/>
+      </p>
+    </div>
+  </div>
+)}
 
       <ToDoProvider
         value={{ todos, addToDo, updatedToDo, deleteToDo, toggleComplete }}
